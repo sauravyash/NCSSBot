@@ -29,16 +29,17 @@ client.on("message", msg => {
   if (msg.content.startsWith("!")){
     let _msg = msg.content.substr(1)
     
-    if (_msg.startsWith("parse")){
+    if (_msg.startsWith("parse python =>")){
       msg.reply("parsing...")
         .then(msg => {
-          let code = _msg.slice(6)
+          let code = _msg.slice(15)
           PythonShell.runString(code, null, function (err, res) {
             try{
               msg.delete()
               if (err) throw err
               msg.channel.send("RESULTS:")
-              msg.channel.send(res)
+              if (res) msg.channel.send(res)
+              else msg.channel.send("ERROR: Python Code Not In Valid Format")
             } catch(e) {
               msg.channel.send(`ERROR WHEN PARSING: ${e}`)
             }
