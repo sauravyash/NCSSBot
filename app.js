@@ -4,16 +4,11 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
 const {PythonShell} = require("python-shell")
-let fs = require("fs")
+require("dotenv").config()
 
-var envJSON = {
+let env = {
   key: process.env.key
-} // eslint-disable-line
-
-fs.readFile(".env", (err, data) => {
-  if (err) throw err
-  envJSON = JSON.parse(data)
-})
+} 
 
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag)
@@ -48,6 +43,4 @@ client.on("message", msg => {
   }
 })
 
-let bot_secret_token = envJSON.key || "NTMxODE4MzIyMTc0NjcyOTA3.DxTeOw.Hf6xMW_iJ3vdbreNSpz2uPZ7dlc"
-
-client.login(bot_secret_token)
+client.login(env)
