@@ -4,11 +4,17 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
 const {PythonShell} = require("python-shell")
-// require("dotenv").config()
+const readJsonSync = require("read-json-sync")
 
-let env = {
-  key: process.env.key
-} 
+let env
+
+if (!process.env.key){
+  env = readJsonSync(".env")
+} else {
+  env = {
+    key: process.env.key 
+  } 
+}
 
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag)
@@ -43,4 +49,4 @@ client.on("message", msg => {
   }
 })
 
-client.login(env)
+client.login(env.key)

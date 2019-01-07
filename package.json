@@ -5,8 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "dotenv": "^6.2.0",
-    "python-shell": "^1.0.7"
+    "python-shell": "^1.0.7",
+    "read-json-sync": "^2.0.1"
   },
   "devDependencies": {},
   "scripts": {
