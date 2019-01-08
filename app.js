@@ -16,33 +16,33 @@ if (!process.env.key){
   } 
 }
 
-let parsePython = msg => {
-  let _msg = msg.content.substr(1)
-  if (_msg.startsWith("parse python =>")){
-    msg.reply("parsing...")
-      .then(msg => {
-        let code = _msg.slice(15)
-        let options = {
-          env: {
-            key: "You Think YOUR'E KYOOL????"
-          }
+function parsePython(msgObj, code) {
+  console.log(0)
+  msgObj.reply("parsing...")
+    .then(msg => {
+      console.log(1)
+      // let options = {
+      //   env: {
+      //     key: "You Think YOUR'E KYOOL????"}
+      // }
+      Python.exec(code).then( res => {
+        console.log(2)
+        try {
+          console.log(3)
+          msg.delete()
+          msgObj.reply("RESULTS:")
+          console.log(res)
+          
+          if (res) msg.channel.send(res)
+          else msg.channel.send("ERROR: Python Code EMPTY stdout")
+        } catch(e) {
+          msg.channel.send(`ERROR WHEN PARSING: ${e}`)
         }
-        Python.exec(code, options).then( res =>{
-          try{
-            msg.delete()
-            msg.reply("RESULTS:")
-            console.log(res)
-            
-            if (res) msg.channel.send(res)
-            else msg.channel.send("ERROR: Python Code EMPTY stdout")
-          } catch(e) {
-            msg.channel.send(`ERROR WHEN PARSING: ${e}`)
-          }
-        }).catch((err)=>{
-          msg.channel.send(`ERROR: ${err}`)
-        })
+      }).catch((err)=>{
+        console.log("func failed: ", err)
+        msg.channel.send(`ERROR: ${err}`)
       })
-  }
+    })
 }
 
 
@@ -51,14 +51,22 @@ client.on("ready", () => {
 })
 
 client.on("message", msg => {
+  
   // Prevent bot from responding to its own messages
   if (msg.author == client.user) {
     return null
   }
 
-  if (msg.content.startsWith("!")){
-    parsePython(msg)
+  if (msg.content.startsWith("!parse python =>")){
+    let newMsg = msg.content.substr(16)
+    parsePython(msg, newMsg)
+  }
+
+  if (msg.content.startsWith("```python")){
+    let newMsg = msg.content.slice(0, -3).substr(9)
+    console.log(newMsg)
+    parsePython(msg, newMsg)
   }
 })
 
-client.login(env.key)
+client.login(env.key, ()=>{process.env.key = null})
