@@ -42,7 +42,21 @@ client.on("message", msg => {
   }
 
   if (msg.content.startsWith(prefix)){
-    msg.reply("Hello World!")
+    // get rid of prefix
+    msg = msg.substring(prefix.length)
+
+    // seperate command from arguments
+    // cmd == "command" && arg == "arguments"
+    let arr = msg.split(" ")
+    let cmd = arr[0].toLowerCase()
+    arr.shift()
+    let arg = arr.join(" ")
+
+    // A test Hello World Command
+    if(cmd == "hello"){
+      msg.reply("World")
+    }
+
   }
 
 })
