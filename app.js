@@ -17,6 +17,8 @@ try{
       key: process.env.key
     }
   }
+} catch(e){
+  console.log(e)
 }
 
 
