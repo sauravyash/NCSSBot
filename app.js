@@ -7,13 +7,18 @@ const readJsonSync = require("read-json-sync")
 
 let env
 
-if (!process.env.key){
-  env = readJsonSync(".env")
-} else {
-  env = {
-    key: process.env.key
+// constants that the user can change
+const prefix = "!"
+try{
+  if (!process.env.key){
+    env = readJsonSync(".env")
+  } else {
+    env = {
+      key: process.env.key
+    }
   }
 }
+
 
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag)
@@ -27,9 +32,11 @@ client.on("message", msg => {
   }
 
   // all command messages
+  // how should i do the beta thing?
+  // create a new bot`?
 
-  if (msg.content.startsWith("!hello")){
-    msg.reply("World!")
+  if (msg.content.startsWith(prefix)){
+    msg.reply("Hello World!")
   }
 
 })
