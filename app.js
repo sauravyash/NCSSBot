@@ -43,11 +43,11 @@ client.on("message", msg => {
 
   if (msg.content.startsWith(prefix)){
     // get rid of prefix
-    msg = msg.substring(prefix.length)
+    content = msg.content.substring(prefix.length)
 
     // seperate command from arguments
     // cmd == "command" && arg == "arguments"
-    let arr = msg.split(" ")
+    let arr = content.split(" ")
     let cmd = arr[0].toLowerCase()
     arr.shift()
     let arg = arr.join(" ")
