@@ -7,6 +7,9 @@ const readJsonSync = require("read-json-sync")
 
 let env
 
+// bot modules
+import * from "bot_modules/nickname"
+
 // constants that the user can change
 const prefix = "!"
 
@@ -75,7 +78,7 @@ client.on("message", msg => {
 
     // change nickname
     else if (cmd == "nickname"){
-      arg
+      nickname()
     }
 
     else{
