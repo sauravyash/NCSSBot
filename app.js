@@ -29,12 +29,23 @@ client.on("ready", () => {
   console.log("Connected as " + client.user.tag)
 })
 
+// Create an event listener for new guild members
+client.on('guildMemberAdd', member => {
+  // Send the message to a designated channel on a server:
+  const channel = member.guild.channels.find(ch => ch.name === 'joinlog');
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  // Send the message, mentioning the member
+  channel.send(`Welcome to the server, ${member}`);
+});
+
 // THE REAL MAGIC
 // Where each message is processed
 client.on("message", msg => {
   // ------------------------------
   // all bot response messages / command responses
   // ------------------------------
+
 
   // Prevent bot from responding to its own messages
   if (msg.author == client.user) {
@@ -54,9 +65,22 @@ client.on("message", msg => {
 
     // A test Hello World Command
     if(cmd == "hello"){
-      msg.reply("World")
+      msg.reply("World", arg)
     }
 
+    // latency test
+    else if(cmd == "latency"){
+      msg.reply(`Ping: ${~~(client.ping)}ms`)
+    }
+
+    // change nickname
+    else if (cmd == "nickname"){
+      arg
+    }
+
+    else{
+      msg.reply(`Sorry ${msg.author.username}, but that was an invalid command!`)
+    }
   }
 
 })
