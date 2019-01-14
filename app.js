@@ -9,6 +9,9 @@ let env
 
 // constants that the user can change
 const prefix = "!"
+
+// read local key if local instance of bot
+// for testing
 try{
   if (!process.env.key){
     env = readJsonSync(".env")
@@ -21,21 +24,22 @@ try{
   console.log(e)
 }
 
-
+// decalre successful connection to discord API
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag)
 })
 
+// THE REAL MAGIC
+// Where each message is processed
 client.on("message", msg => {
+  // ------------------------------
+  // all bot response messages / command responses
+  // ------------------------------
 
   // Prevent bot from responding to its own messages
   if (msg.author == client.user) {
     return null
   }
-
-  // all command messages
-  // how should i do the beta thing?
-  // create a new bot`?
 
   if (msg.content.startsWith(prefix)){
     msg.reply("Hello World!")
@@ -43,4 +47,5 @@ client.on("message", msg => {
 
 })
 
+// login to discord API
 client.login(env.key, ()=>{process.env.key = null})
