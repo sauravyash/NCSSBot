@@ -76,7 +76,7 @@ function nickname(msg, arg){
         newNickname = newNickname.slice(0,-1)
 
       }
-      if (newNickname.length > 32){
+      if (`${arg} (${newNickname})`.length > 32){
         msg.reply("Nickname Error: Name Too Long")
         return null
       }
