@@ -15,7 +15,7 @@ function nickname(msg, arg) {
       msg.member.setNickname(msg.member.nickname.split(' : ')[1])
       msg.reply("Nickname Successfully Reset")
     } else if (!arg[0]) {
-      msg.reply("Please send your nickname.")
+      msg.reply("Please write the command in the following format.\n`!nickname {nickname} || reset")
     } else {
       msg.member.setNickname(arg[0] + " : " + msg.member.nickname)
       msg.reply("Custom Nickname Successfully Set")
