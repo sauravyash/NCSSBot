@@ -9,7 +9,7 @@ let env = {}
 let local
 
 // bot modules
-
+const nickname = require('bot_modules/nickname');
 
 // constants that the user can change
 const prefix = "!"
