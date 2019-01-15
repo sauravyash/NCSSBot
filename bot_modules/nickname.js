@@ -8,7 +8,6 @@ function nickname(msg, arg) {
       msg.reply("Please write the command in the following format.\n\`!nickname {First Name} {Last Name} {Group Number}\`")
       //Please use the arguments: [First Name, , Group Number]
     } else {
-      // msg.member.setNickname(arg[0] + " " + arg[1].split('')[0] + " [" + arg[2] + "]")
       msg.member.setNickname(`${arg[0]} ${arg[1].split('')[0]} [${arg[2]}]`)
       msg.reply("Initial Name Successfully Set")
     }
