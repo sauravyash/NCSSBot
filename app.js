@@ -5,10 +5,11 @@ const Discord = require("discord.js")
 const client = new Discord.Client()
 const readJsonSync = require("read-json-sync")
 
-let env
+let env = {}
+let local
 
 // bot modules
-import * from "bot_modules/nickname"
+
 
 // constants that the user can change
 const prefix = "!"
@@ -17,15 +18,21 @@ const prefix = "!"
 // for testing
 try{
   if (!process.env.key){
-    env = readJsonSync(".env")
+    env = readJsonSync(".env") || readJsonSync(".env.json")
   } else {
     env = {
       key: process.env.key
     }
   }
+  if (!env.user_whitelist){
+    local = false
+  } else{
+    local = true
+  }
 } catch(e){
   console.log(e)
 }
+
 
 // decalre successful connection to discord API
 client.on("ready", () => {
@@ -49,6 +56,11 @@ client.on("message", msg => {
   // all bot response messages / command responses
   // ------------------------------
 
+  if (local){
+    if(!env.user_whitelist.includes(msg.author.id)){
+      return null
+    }
+  }
 
   // Prevent bot from responding to its own messages
   if (msg.author == client.user) {
