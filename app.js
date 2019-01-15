@@ -14,7 +14,7 @@ const nickname = require("./bot_modules/nickname")
 const Help_Menu = require("./bot_modules/help")
 
 // constants that the user can change
-const prefix = ">"
+const prefix = "!"
 
 // read local key if local instance of bot
 // for testing
