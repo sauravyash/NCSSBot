@@ -1,6 +1,7 @@
 // discord bot for NCSS 2019
 // link:
-//      https://discordapp.com/oauth2/authorize?client_id=531818322174672907&scope=bot&permissions=1245183424
+//      master bot: https://discordapp.com/oauth2/authorize?client_id=531818322174672907&scope=bot&permissions=2146958847
+//      beta bot: https://discordapp.com/oauth2/authorize?client_id=534306693706940426&scope=bot&permissions=2146958847
 const Discord = require("discord.js")
 const client = new Discord.Client()
 const readJsonSync = require("read-json-sync")
@@ -95,7 +96,7 @@ client.on("message", msg => {
 
       case "ok":
         msg.reply("👌")
-        break; 
+        break;
 
       default:
         msg.reply(`Sorry ${msg.author.username}, but that was an invalid command!`)
