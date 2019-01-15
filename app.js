@@ -77,24 +77,24 @@ client.on("message", msg => {
     let cmd = arr[0].toLowerCase()
     arr.shift()
     let arg = arr.join(" ")
+    switch (cmd) {
+      // A test Hello World Command
+      case "hello":
+        msg.reply("World", arg)
+        break;
 
-    // A test Hello World Command
-    if(cmd == "hello"){
-      msg.reply("World", arg)
-    }
+      // latency test
+      case "latency":
+        msg.reply(`Ping: ${~~(client.ping)}ms`)
+        break;
 
-    // latency test
-    else if(cmd == "latency"){
-      msg.reply(`Ping: ${~~(client.ping)}ms`)
-    }
+      // change nickname
+      case "nickname":
+        nickname()
+        break;
 
-    // change nickname
-    else if (cmd == "nickname"){
-      nickname()
-    }
-
-    else{
-      msg.reply(`Sorry ${msg.author.username}, but that was an invalid command!`)
+      default:
+        msg.reply(`Sorry ${msg.author.username}, but that was an invalid command!`)
     }
   }
 
