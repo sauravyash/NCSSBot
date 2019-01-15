@@ -10,8 +10,8 @@ let env = {}
 let local
 
 // bot modules
-const nickname = require('./bot_modules/nickname');
-const Help_Menu = require('./bot_modules/help');
+const nickname = require("./bot_modules/nickname")
+const Help_Menu = require("./bot_modules/help")
 
 // constants that the user can change
 const prefix = "!"
@@ -42,14 +42,14 @@ client.on("ready", () => {
 })
 
 // Create an event listener for new guild members
-client.on('guildMemberAdd', member => {
+client.on("guildMemberAdd", member => {
   // Send the message to a designated channel on a server:
-  const channel = member.guild.channels.find(ch => ch.name === 'joinlog');
+  const channel = member.guild.channels.find(ch => ch.name === "names")
   // Do nothing if the channel wasn't found on this server
-  if (!channel) return;
+  if (!channel) return
   // Send the message, mentioning the member
-  channel.send(`Welcome to the server, ${member}. Please type \`!nickname\` to verify yourself. `);
-});
+  channel.send(`Welcome to the server, ${member}. Please type \`!nickname\` to verify yourself. `)
+})
 
 // THE REAL MAGIC
 // Where each message is processed
@@ -71,7 +71,7 @@ client.on("message", msg => {
 
   if (msg.content.startsWith(prefix)){
     // get rid of prefix
-    content = msg.content.substring(prefix.length)
+    let content = msg.content.substring(prefix.length)
 
     // seperate command from arguments
     // cmd == "command" && arg == "arguments"
@@ -83,22 +83,22 @@ client.on("message", msg => {
       // A test Hello World Command
       case "hello":
         msg.reply("World", arg)
-        break;
+        break
 
-      // latency test
+      // Latency Test
       case "latency":
         msg.reply(`Ping: ${~~(client.ping)}ms`)
-        break;
+        break
 
-      // change nickname
+      // Change Nickname
       case "nickname":
         nickname(msg, arg)
-        break;
+        break
 
+      // Help Menu
       case "help":
         Help_Menu(msg, client)
-        break;
-
+        break
 
       default:
         msg.reply(`Sorry ${msg.author.username}, but that was an invalid command!`)
