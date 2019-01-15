@@ -9,7 +9,7 @@ function nickname(msg, arg) {
       //Please use the arguments: [First Name, , Group Number]
     } else {
       // msg.member.setNickname(arg[0] + " " + arg[1].split('')[0] + " [" + arg[2] + "]")
-      msg.member.setNickname(`${arg[0]} ${arg[1].split[0]} [${arg[2]}]`)
+      msg.member.setNickname(`${arg[0]} ${arg[1].split('')[0]} [${arg[2]}]`)
       msg.reply("Initial Name Successfully Set")
     }
   }
