@@ -38,7 +38,7 @@ function nickname(msg, arg){
     let firstName = arr.join(" ")
 
     // TODO: ADD SOME VALIDATION CODE FOR FNAME L NAME AND GROUP NUMBER
-    msg.member.setNickname(`(${firstName} ${lastName} [${number}])`)
+    msg.member.setNickname(`${firstName} ${lastName} [${number}]`)
     msg.reply("Initial Name Successfully Set")
   }
   else{
