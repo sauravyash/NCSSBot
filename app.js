@@ -90,8 +90,12 @@ client.on("message", msg => {
 
       // change nickname
       case "nickname":
-        nickname()
+        nickname(msg, arg)
         break;
+
+      case "ok":
+        msg.reply("👌")
+        break; 
 
       default:
         msg.reply(`Sorry ${msg.author.username}, but that was an invalid command!`)
