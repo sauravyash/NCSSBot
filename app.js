@@ -11,6 +11,7 @@ let local
 
 // bot modules
 const nickname = require('./bot_modules/nickname');
+const Help_Menu = require('./bot_modules/help');
 
 // constants that the user can change
 const prefix = "!"
@@ -94,8 +95,8 @@ client.on("message", msg => {
         nickname(msg, arg)
         break;
 
-      case "ok":
-        msg.reply("👌")
+      case "help":
+        Help_Menu(msg, client)
         break;
 
       default:
