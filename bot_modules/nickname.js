@@ -1,3 +1,5 @@
-export default function nickname() {
-  
+function nickname() {
+
 }
+
+module.exports = nickname
