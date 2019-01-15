@@ -26,17 +26,33 @@
 function nickname(msg, arg){
   // if user has not created a username
   if (!msg.member.nickname) {
+    var replyError = () => {
+      msg.reply("Please write the command in the following format.\n`!nickname {First Name} {Last Name} {Group Number}`")
+    }
     let arr = arg.split(" ")
     if (arr.length < 3){
-      msg.reply("Please write the command in the following format.\n`!nickname {First Name} {Last Name} {Group Number}`")
+      replyError()
       return null
     }
     let number = arr[arr.length - 1]
     arr.pop()
-    let lastName = arr[arr.length - 1]
+    let lastName = arr[arr.length - 1].substring(0, 1)
     arr.pop()
     let firstName = arr.join(" ")
-
+    if(!/^[A-Za-zÀ-ÖØ-öø-ÿ- ]*$/i.test(firstName)){
+      replyError()
+      return;
+    }
+    if(!/^[A-Za-zÀ-ÖØ-öø-ÿ- ]*$/i.test(lastName)){
+      replyError()
+      return;
+    }
+    if(!/^[1-9]$/i.test(number)){
+      msg.reply("Invalid group Number")
+      return;
+    }
+    firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1)
+    lastName = lastName.toUpperCase()
     // TODO: ADD SOME VALIDATION CODE FOR FNAME L NAME AND GROUP NUMBER
     msg.member.setNickname(`${firstName} ${lastName} [${number}]`)
     msg.reply("Initial Name Successfully Set")
