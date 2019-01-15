@@ -99,6 +99,7 @@ client.on("message", msg => {
         Help_Menu(msg, client)
         break;
 
+
       default:
         msg.reply(`Sorry ${msg.author.username}, but that was an invalid command!`)
     }

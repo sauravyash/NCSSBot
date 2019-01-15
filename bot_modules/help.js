@@ -10,7 +10,7 @@ function Help_Menu(msg, client) {
       fields: [
         {
           name: "!nickname {args}",
-          value: "This command allows you to set a nickname and verify yourself by adding a real name on start. ```!nickname [First Name] [Last Name] [Group Number]``` \nAfter registering you may set a custom name using: ```!nickname [nickname] ```"
+          value: "This command allows you to set a nickname and verify yourself by adding a real name on start. ```!nickname [First Name] [Last Name] [Group Number]``` \nAfter registering you may set a custom name using: ```!nickname [nickname] ```\n To reset the nickname use: ```!nickname reset```"
         },
         {
           name: "!latency",
