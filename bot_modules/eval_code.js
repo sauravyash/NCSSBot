@@ -10,7 +10,7 @@ function eval_code(msg, arg){
   arr.shift()
   code = arr.join("\n")
   let res = ""
-  console.log(res)
+  console.log(code)
   switch (lang) {
     case "js":
         try{
