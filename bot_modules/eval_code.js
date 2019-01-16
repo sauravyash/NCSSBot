@@ -13,11 +13,16 @@ function eval_code(msg, arg){
   console.log(res)
   switch (lang) {
     case "js":
-        res = safeEval(code)
-        if (!res){
-          msg.reply("Error: Nothing was returned from the statement. Output: " + res)
+        try{
+          res = safeEval(code)
+          if (!res){
+            msg.reply("Error: Nothing was returned from the statement. Output: " + res)
+          }
+          msg.reply("`" + res +"`")
+        } catch(e){
+          msg.reply(`ERROR: ${e}`)
         }
-        msg.reply("`" + res +"`")
+
       break
 
     default:
