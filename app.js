@@ -21,7 +21,7 @@ const prefix = "!"
 try{
   if (!process.env.key){
     try{
-      env = readJsonSync(".env") 
+      env = readJsonSync(".env")
     }
     catch(e){
       env = readJsonSync(".env.json")
@@ -95,9 +95,9 @@ client.on("message", msg => {
         msg.reply(`Ping: ${~~(client.ping)}ms`)
         break
 
-      // Change Nickname
+      // Change Nickname in names channel
       case "nickname":
-        nickname(msg, arg)
+        if (msg.channel.name == "names") nickname(msg, arg)
         break
 
       // Help Menu
