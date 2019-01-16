@@ -2,7 +2,7 @@ let safeEval = require("safe-eval")
 
 function eval_code(msg, arg){
   // clean up
-  let code = arg.substring(4)
+  let code = arg.substring(3)
   code = code.slice(0, -3)
   console.log(code)
   let arr = code.split("\n")
@@ -19,6 +19,7 @@ function eval_code(msg, arg){
         }
         msg.reply("`" + res +"`")
       break
+
     default:
       msg.reply(`Sorry, the language ${lang} is not supported yet.`)
   }
