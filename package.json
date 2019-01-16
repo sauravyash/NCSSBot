@@ -6,7 +6,8 @@
   "dependencies": {
     "discord.js": "^11.4.2",
     "python-runner": "^1.1.0",
-    "read-json-sync": "^2.0.1"
+    "read-json-sync": "^2.0.1",
+    "safe-eval": "^0.4.1"
   },
   "devDependencies": {},
   "scripts": {

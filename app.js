@@ -12,6 +12,7 @@ let local
 // bot modules
 const nickname = require("./bot_modules/nickname")
 const Help_Menu = require("./bot_modules/help")
+const eval_code = require("./bot_modules/eval_code")
 
 // constants that the user can change
 const prefix = "!"
@@ -104,6 +105,10 @@ client.on("message", msg => {
       // Help Menu
       case "help":
         Help_Menu(msg, client)
+        break
+
+      case "eval":
+        eval_code(msg, arg)
         break
 
       default:
