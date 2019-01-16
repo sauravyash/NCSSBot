@@ -98,7 +98,7 @@ client.on("message", msg => {
       // Change Nickname in names channel
       case "nickname":
         if (msg.channel.name == "names") nickname(msg, arg)
-        else msg.reply("Please use the #names channel for the nickname command")
+        else msg.reply(`Please use the ${msg.guild.channels.find(channel => channel.name === "names").toString()} channel for the nickname command`)
         break
 
       // Help Menu
